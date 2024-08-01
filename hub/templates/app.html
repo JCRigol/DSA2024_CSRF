@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/xml-hint.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/tabs.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='prism.css') }}"> -->
+</head>
+<body>
+    <div class="tabs">
+        <button class="tablinks" onclick="openTab(event, 'AdminPanel')">Admin</button>
+        <button class="tablinks" onclick="openTab(event, 'VulnerableSite')">Vulnerable Site</button>
+    </div>
+
+    <div id="AdminPanel" class="tabcontent">
+        <h2>Automatic Administrator Checklist (Reload the page after ~30 seconds to see status)</h2>
+        
+        <div class="checklist-item">
+            <div class="task-status">
+                <p class="{% if admin_agent.admin_action_1.status == 'Cleared' %}text-green{% elif admin_agent.admin_action_1.status == 'Failed' %}text-red{% else %}text{% endif %}">
+                    {{ admin_agent.admin_action_1.desc }}
+                </p>
+            </div>
+        </div>
+        
+        <div class="checklist-item">
+            <div class="task-status">
+                <p class="{% if admin_agent.admin_action_2.status == 'Cleared' %}text-green{% elif admin_agent.admin_action_2.status == 'Failed' %}text-red{% else %}text{% endif %}">
+                    {{ admin_agent.admin_action_2.desc }}
+                </p>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <div class="task-status">
+                <p class="{% if admin_agent.admin_action_3.status == 'Cleared' %}text-green{% elif admin_agent.admin_action_3.status == 'Failed' %}text-red{% else %}text{% endif %}">
+                    {{ admin_agent.admin_action_3.desc }}
+                </p>
+            </div>
+        </div>
+
+        <div class="checklist-item">
+            <div class="task-status">
+                <p class="{% if admin_agent.admin_action_4.status == 'Cleared' %}text-green{% elif admin_agent.admin_action_4.status == 'Failed' %}text-red{% else %}text{% endif %}">
+                    {{ admin_agent.admin_action_4.desc }}
+                </p>
+            </div>
+        </div>
+        
+        <button class="reset-btn" onclick="resetAdmin()">Reset Admin</button>
+        <button id="runAdminButton" class="button" onclick="runAdmin()">Run Admin</button>
+    </div>
+
+    <div id="VulnerableSite" class="tabcontent">
+        <h2>Attack Site</h2>
+
+        <div class="hint-container">
+            <button class="hint-toggle" onclick="toggleHint()">Show Hint</button>
+            <div class="hint-content" id="hintContent">
+                <p>Vulnerable site internal DNS is http://site1</p>
+            </div>
+        </div>
+
+        <br></br>
+
+        <textarea id="html-input" hidden>HTML goes here...</textarea>
+
+        <button class="hint-toggle" id="send-button" onclick="updateSite()">Update Attack Site</button> 
+
+        <div id="site-preview">
+            <h3>This is a reflection of the site:</h3>
+            <iframe id="site-frame" style="width:100%; height:200px;"></iframe>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/prism.js') }}"></script>
+</body>
+</html>

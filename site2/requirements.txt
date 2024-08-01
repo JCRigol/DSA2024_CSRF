@@ -1,0 +1,4 @@
+Flask
+bleach
+flask-cors
+redis

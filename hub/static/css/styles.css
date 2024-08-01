@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.task-item {
+    margin-bottom: 10px;
+}
+.task-status {
+    font-size: 16px;
+    color: #333;
+}
+.checklist-item {
+    margin-bottom: 20px;
+}
+.reset-btn {
+    margin-top: 20px;
+}
+.status-indicator {
+    font-size: 18px;
+    color: #007bff;
+    margin-left: 10px;
+}
+
+.hint-container {
+    position: relative;
+}
+
+.hint-content {
+    display: none; /* Hide hint content by default */
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.hint-toggle {
+    padding: 5px 10px;
+    border: 1px solid #007BFF;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.hint-toggle:hover {
+    background-color: #0056b3;
+}
+
+.text-green {
+    color: green;
+}
+.text-red {
+    color: red;
+}
